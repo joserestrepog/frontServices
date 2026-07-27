@@ -10,3 +10,19 @@
     <p>{{ character.species }} · {{ character.status }}</p>
   </a>
 </div>
+
+<div class="pagination" *ngIf="!loading && !error">
+  <button
+    (click)="previousPage()"
+    [disabled]="!hasPrev">
+    ← Anterior
+  </button>
+
+  <span>Página {{ currentPage }}</span>
+
+  <button
+    (click)="nextPage()"
+    [disabled]="!hasNext">
+    Siguiente →
+  </button>
+</div>

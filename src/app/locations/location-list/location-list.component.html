@@ -1,0 +1,17 @@
+<h2>Ubicaciones</h2>
+
+<p class="status" *ngIf="loading">Cargando...</p>
+<p class="status error" *ngIf="error">
+  Ocurrió un error al consultar la API.
+</p>
+
+<div class="locations-grid" *ngIf="!loading && !error">
+  <a
+    class="location-card"
+    *ngFor="let location of locations"
+    [routerLink]="[location.id]"
+  >
+    <h3>{{ location.name }}</h3>
+    <p>{{ location.type }} · {{ location.dimension }}</p>
+  </a>
+</div>

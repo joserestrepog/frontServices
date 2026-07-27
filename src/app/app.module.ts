@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { LocationListComponent } from './locations/location-list/location-list.component';
 
 @NgModule({
   declarations: [
