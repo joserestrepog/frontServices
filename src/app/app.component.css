@@ -1,0 +1,26 @@
+.app-header {
+  background-color: #1976d2;
+  color: #fff;
+  padding: 1rem 1.5rem;
+}
+
+.app-header h1 {
+  margin: 0;
+  font-size: 1.4rem;
+}
+
+.app-header nav a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.app-header nav a.active {
+  text-decoration: underline;
+}
+
+.app-main {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
