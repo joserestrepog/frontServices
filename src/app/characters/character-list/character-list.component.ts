@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CharacterService } from '../services/character.service';
 import { Character } from '../models/characters.model';
+import { LoadingService } from '../../shared/services/loading.service'
+import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-character-list',
@@ -10,24 +12,26 @@ import { Character } from '../models/characters.model';
 export class CharacterListComponent implements OnInit {
 
   characters: Character[] = [];
-  loading = false;
   error = false;
 
-  constructor(private characterService: CharacterService) { }
+  constructor(
+    private characterService: CharacterService,
+    public loadingService: LoadingService
+  ) { }
 
   ngOnInit(): void {
+    this.error = false;
+    this.loadingService.show();
 
-    this.loading = true;
-    this.characterService.getCharacters().subscribe({
-      next: (response) => {
-        this.characters = response.results;
-        this.loading = false;
-      },
-      error: () => {
-        this.error = true;
-        this.loading = false;
-      }
-    });
+    this.characterService.getCharacters().pipe(finalize(() => this.loadingService.hide()))
+      .subscribe({
+        next: (response) => {
+          this.characters = response.results;
+        },
+        error: () => {
+          this.error = true;
+        }
+      });
 
   }
 
