@@ -1,0 +1,6 @@
+<li [ngClass]="{completed: task.state}" [appHighLight]="task.state ? 'lightgreen' : 'lightyellow'">
+    <span>{{ task.description }} - {{ task.state }} </span>
+    
+    <button (click)="onDeleteTask()">Eliminar</button>
+    <button (click)="onChangeStateTask()">Cambiar estado</button>
+</li>

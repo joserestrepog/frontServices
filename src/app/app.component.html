@@ -1,0 +1,48 @@
+<header class="app-header">
+
+    <h1> {{ tittle }} </h1>
+    <p>Data binding, directives, @Output and @Input</p>
+
+</header>
+
+<main class="app-content">
+
+    <section class="demo">
+        <h2>Interpolación</h2>
+        <p>El título de la página es: {{ tittle }}</p>
+        <h2>Property binding</h2>
+        <img [src]="logoURL" [alt]="logoAlt">
+        <br>
+        <button [disabled]="disabledBtn">Botón deshabilidado</button>
+    </section>
+
+    <section class="demo">
+        <h2>Event binding</h2>
+        <p>Counter: {{ counter }}</p>
+        <button (click)="increment()">Increment</button>
+        <br>
+        <button (click)="decrement()">Decrement</button>
+    </section>
+
+    <section class="demo">
+        <h2>Two-wat binding</h2>
+        <input [(ngModel)]="name" type="text" placeholder="put your name">
+        <p>Hello {{ name }}</p>
+
+    </section>
+
+    <section class="demo">
+
+        <h2>Tasks</h2>
+
+        <app-task-form (taskAdded)="onTaskAdded($event)"></app-task-form>
+
+        <p *ngIf="tasks.length === 0">No tasks to display</p>
+
+        <ul>
+            <app-task-item *ngFor="let task of tasks" [task]="task" (deleteTask)="onDeleteTask($event)" (changeStateTask)="onChangeStateTask($event)"></app-task-item>
+        </ul>
+
+    </section>
+
+</main>
