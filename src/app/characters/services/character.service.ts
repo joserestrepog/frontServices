@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { CharacterApiResponse } from '../models/characters.model';
+import { Character, CharacterApiResponse } from '../models/characters.model';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +14,10 @@ export class CharacterService {
 
   getCharacters(page: number = 1): Observable<CharacterApiResponse> {
     return this.httpClient.get<CharacterApiResponse>(`${this.apiURL}?page=${page}`);
+  }
+
+  getCharacter(id: number): Observable<Character> {
+    return this.httpClient.get<Character>(`${this.apiURL}/${id}`);
   }
 
 }
